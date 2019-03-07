@@ -5,26 +5,34 @@ import Bootstrap.Table as Table
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
+import Header exposing (..)
 import Models exposing (..)
 import Msgs exposing (..)
 
 view : Model -> Html Msg
 view model =
-  Table.table
-  { options = [ Table.striped ]
-  , thead = Table.simpleThead
-    [ Table.th [ center ] [ text "User" ]
-    , Table.th [ center ] [ text "Score" ]
+  div []
+    [ Header.view  []
+    , h3 [ center, style "margin-bottom" "20px" ] [ text "Yesterday's Results" ]
+    , Table.table
+      { options = [ Table.striped ]
+      , thead = Table.simpleThead
+        [ Table.th [ cellCenter ] [ text "User" ]
+        , Table.th [ cellCenter ] [ text "Score" ]
+        ]
+      , tbody = Table.tbody [] (List.map resultRow model.results)
+      }
     ]
-  , tbody = Table.tbody [] (List.map resultRow model.results)
-  }
 
 resultRow : User -> Table.Row Msg
 resultRow user =
   Table.tr []
     [ Table.td [] [ text user.email ]
-    , Table.td [ center ] [ text "100" ]
+    , Table.td [ cellCenter ] [ text "100" ]
     ]
 
-center : Table.CellOption Msg
-center = Table.cellAttr (style "text-align" "center")
+center : Attribute Msg
+center = style "text-align" "center"
+
+cellCenter : Table.CellOption Msg
+cellCenter = Table.cellAttr center

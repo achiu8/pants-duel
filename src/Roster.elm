@@ -1,16 +1,12 @@
 module Roster exposing (..)
 
 import Bootstrap.Button as Button
-import Bootstrap.Grid as Grid
-import Bootstrap.Grid.Col as Col
 import Bootstrap.Form.Select as Select
-import Bootstrap.Text as Text
-import FontAwesome.Icon as Icon
-import FontAwesome.Solid as Icon
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
+import Header exposing (..)
 import Models exposing (..)
 import Msgs exposing (..)
 import ProductList exposing (..)
@@ -19,7 +15,7 @@ import Utils exposing (..)
 view : Model -> Html Msg
 view model =
   div []
-    [ header (currency (budgetLeft model.roster))
+    [ Header.view [ text ("Budget Left: " ++ currency (budgetLeft model.roster)) ]
     , div [ style "text-align" "center" ]
       [ text ("Roster spots filled: " ++ String.fromInt (List.length model.roster)) ]
     , div []
@@ -41,18 +37,6 @@ view model =
       ]
       (List.map (selectOption << categoryDisplay) categories)
     , ProductList.view model
-    ]
-
-header : String -> Html Msg
-header budget =
-  Grid.row []
-    [ Grid.col []
-      [ div [ onClick (View Home) ]
-        [ Icon.viewStyled [ style "margin-right" "10px" ] Icon.chevronLeft
-        , text "Back to Home" ]
-        ]
-    , Grid.col [ Col.textAlign Text.alignXsRight ]
-      [ div [] [ text ("Budget Left: " ++ budget) ] ]
     ]
 
 selectOption : String -> Select.Item Msg
