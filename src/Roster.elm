@@ -22,7 +22,7 @@ view model =
       [ text ("Roster spots filled: " ++ String.fromInt (List.length model.roster)) ]
     , div []
       [ Button.button
-        [ Button.primary
+        [ Button.dark
         , Button.attrs
           [ onClick SubmitRoster
           , style "width" "100%"

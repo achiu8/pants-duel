@@ -17,7 +17,7 @@ view =
       , placeholder "Email" ]
     ]
   , Button.button
-    [ Button.primary
+    [ Button.dark
     , Button.attrs
       [ onClick Login
       , style "width" "100%"
