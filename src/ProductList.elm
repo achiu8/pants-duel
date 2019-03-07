@@ -40,15 +40,15 @@ productRow model product =
       ]
     [ Grid.row []
       [ Grid.col [ Col.xs3 ]
-        [ img [ src (categoryImage product.category) , style "height" "100px" ] []
+        [ img [ src (categoryImage product.category) , style "width" "100%" ] []
         ]
-      , Grid.col [ Col.middleXs, Col.xs6 ]
+      , Grid.col [ Col.xs7, Col.middleXs ]
         [ div []
           [ div [] [ text product.name ]
           , div [] [ text (currency product.price) ]
           ]
         ]
-      , Grid.col [ Col.middleXs, Col.textAlign Text.alignXsRight ]
+      , Grid.col [ Col.xs2, Col.middleXs, Col.textAlign Text.alignXsRight ]
         [ div [ style "padding-right" "10px" ]
           [ if selected
               then Icon.viewStyled [ Icon.fa2x, style "color" "Green" ] Icon.checkCircle

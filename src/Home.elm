@@ -42,9 +42,9 @@ panel p =
     , style "border-top" "1px solid grey"
     ]
     [ Grid.row []
-      [ Grid.col [ Col.middleXs ]
+      [ Grid.col [ Col.xs10, Col.middleXs ]
         [ div [] [ text p.text ] ]
-      , Grid.col [ Col.middleXs, Col.textAlign Text.alignXsRight ]
+      , Grid.col [ Col.xs2, Col.middleXs, Col.textAlign Text.alignXsRight ]
         [ Icon.viewStyled [ Icon.lg ] Icon.chevronRight ]
       ]
     ]
