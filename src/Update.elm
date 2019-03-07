@@ -44,7 +44,9 @@ update msg model =
       (model, submitRoster model)
 
     CheckSubmitted ->
-      ({ model | submitted = alreadySubmitted model }, Cmd.none)
+      ( { model | submitted = alreadySubmitted model, roster = rosterFromResults model }
+      , Cmd.none
+      )
 
     NoOp ->
       (model, Cmd.none)

@@ -78,7 +78,15 @@ resultsDecoder = Decode.field "results" (Decode.list userDecoder)
 currency : Int -> String
 currency = String.append "$" << format { usLocale | decimals = 0 } << toFloat
 
+findInResults : Model -> List User
+findInResults model = List.filter (\user -> user.email == model.email) model.results
+
 alreadySubmitted : Model -> Bool
-alreadySubmitted model =
-  let matches = List.filter (\user -> user.email == model.email) model.results
-  in List.length matches > 0
+alreadySubmitted = not << (==) 0 << List.length << findInResults
+
+rosterFromResults : Model -> List Product
+rosterFromResults model =
+  let matches = findInResults model
+  in case matches of
+      user :: _ -> user.roster
+      _         -> []
