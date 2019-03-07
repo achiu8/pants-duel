@@ -38,7 +38,7 @@ categoryImage category =
     Tops        -> "https://png.pngtree.com/svg/20160621/db3c3c4d9c.svg"
     Outerwear   -> "https://png.pngtree.com/svg/20160606/2597271a8b.svg"
     Suits       -> "https://png.pngtree.com/svg/20170509/703d28498b.svg"
-    Accessories -> "https://png.pngtree.com/svg/20170905/00d644ac9c.svg"
+    Accessories -> "https://png.pngtree.com/svg/20170907/f869eff09c.svg"
     Other       -> "https://png.pngtree.com/svg/20161213/a3817a439c.svg"
 
 productDecoder : Decoder Product

@@ -5,16 +5,16 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
-import Header exposing (..)
 import Models exposing (..)
 import Msgs exposing (..)
 import ProductList exposing (..)
+import RosterHeader exposing (..)
 import Utils exposing (..)
 
 view : Model -> Html Msg
 view model =
   div []
-    [ Header.view [ text ("Budget Left: " ++ currency (budgetLeft model.roster)) ]
+    [ RosterHeader.view model
     , Select.select
       [ Select.attrs
         [ onInput selectCategory
