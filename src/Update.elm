@@ -25,6 +25,13 @@ update msg model =
     RemoveProduct product ->
       ({ model | roster = List.filter ((/=) product) model.roster }, Cmd.none)
 
+    ReceivedProducts result ->
+      case result of
+        Ok products ->
+          ({ model | products = products }, Cmd.none)
+        Err _ ->
+          (model, Cmd.none)
+
     SubmitRoster ->
       (model, submitRoster model.roster)
 

@@ -10,6 +10,7 @@ import Json.Decode exposing (Decoder, field, string)
 import Task
 import Time
 
+import Commands exposing (..)
 import Home exposing (..)
 import Login exposing (..)
 import Models exposing (..)
@@ -27,7 +28,7 @@ main =
 
 init : () -> (Model, Cmd Msg)
 init _ =
-  (initialModel, Cmd.none)
+  (initialModel, fetchProducts)
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =

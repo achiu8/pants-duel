@@ -44,14 +44,5 @@ initialModel =
   , loggedIn = False
   , category = Bottoms
   , roster = []
-  , products =
-      [ Product "stretch chinos" Bottoms 15
-      , Product "tech chinos" Bottoms 10
-      , Product "stretch denim" Bottoms 10
-      , Product "riviera" Tops 5
-      , Product "oxford" Tops 5
-      , Product "t-shirt" Tops 5
-      , Product "parka" Outerwear 5
-      , Product "tuxedo" Suits 10
-      ]
+  , products = []
   }

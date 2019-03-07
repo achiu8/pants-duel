@@ -1,5 +1,7 @@
 module Msgs exposing (..)
 
+import Http
+
 import Models exposing (..)
 import Utils exposing (..)
 
@@ -10,6 +12,7 @@ type Msg
   | SelectCategory Category
   | SelectProduct Product
   | RemoveProduct Product
+  | ReceivedProducts (Result Http.Error (List Product))
   | SubmitRoster
   | NoOp
 

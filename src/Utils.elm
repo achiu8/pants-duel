@@ -1,5 +1,8 @@
 module Utils exposing (..)
 
+import Json.Decode as Decode exposing (..)
+import Json.Decode.Pipeline exposing (..)
+
 import Models exposing (..)
 
 budgetLeft : List Product -> Int
@@ -17,12 +20,12 @@ categoryDisplay category =
 
 categoryFromString : String -> Category
 categoryFromString s =
-  case s of
-    "Bottoms"     -> Bottoms
-    "Tops"        -> Tops
-    "Outerwear"   -> Outerwear
-    "Suits"       -> Suits
-    "Accessories" -> Accessories
+  case String.toLower s of
+    "bottoms"     -> Bottoms
+    "tops"        -> Tops
+    "outerwear"   -> Outerwear
+    "suits"       -> Suits
+    "accessories" -> Accessories
     _             -> Other
 
 categoryImage : Category -> String
@@ -34,3 +37,13 @@ categoryImage category =
     Suits       -> "https://png.pngtree.com/svg/20170509/703d28498b.svg"
     Accessories -> "https://png.pngtree.com/svg/20170905/00d644ac9c.svg"
     Other       -> "https://png.pngtree.com/svg/20161213/a3817a439c.svg"
+
+productDecoder : Decoder Product
+productDecoder =
+  Decode.succeed Product
+   |> required "name" string
+   |> required "category" (Decode.map categoryFromString string)
+   |> required "price" int
+
+productsDecoder : Decoder (List Product)
+productsDecoder = Decode.field "products" (Decode.list productDecoder)
