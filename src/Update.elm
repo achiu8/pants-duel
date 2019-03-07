@@ -33,6 +33,9 @@ update msg model =
         Err _ ->
           (model, Cmd.none)
 
+    FetchResults ->
+      (model, fetchResults)
+
     ReceivedResults result ->
       case result of
         Ok results ->

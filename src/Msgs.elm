@@ -13,6 +13,7 @@ type Msg
   | SelectProduct Product
   | RemoveProduct Product
   | ReceivedProducts (Result Http.Error (List Product))
+  | FetchResults
   | ReceivedResults (Result Http.Error (List User))
   | SubmitRoster
   | CheckSubmitted

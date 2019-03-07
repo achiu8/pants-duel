@@ -34,7 +34,7 @@ init _ =
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-  Sub.none
+  Time.every 5000 (always FetchResults)
 
 view : Model -> Html Msg
 view model =
