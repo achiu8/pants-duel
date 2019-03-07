@@ -1,5 +1,6 @@
 module Utils exposing (..)
 
+import Dict exposing (..)
 import FormatNumber exposing (format)
 import FormatNumber.Locales exposing (usLocale)
 import Json.Decode as Decode exposing (..)
@@ -97,3 +98,11 @@ validRoster : List Product -> Bool
 validRoster roster =
   categories
     |> List.all (\c -> List.any (\p -> p.category == c) roster)
+
+countCategories : List Product -> Dict String Int
+countCategories roster =
+  let update = Maybe.map ((+) 1) << Just << Maybe.withDefault 0
+  in List.foldr
+       (\p counts -> Dict.update (categoryDisplay p.category) update counts)
+       Dict.empty
+       roster
