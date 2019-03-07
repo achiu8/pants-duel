@@ -5,7 +5,6 @@ import Html.Events exposing (..)
 
 import Models exposing (..)
 import Msgs exposing (..)
-import Types exposing (..)
 
 view : Html Msg
 view =

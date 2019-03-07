@@ -1,11 +1,15 @@
 module Msgs exposing (..)
 
 import Models exposing (..)
-import Types exposing (..)
+import Utils exposing (..)
 
 type Msg
   = View Page
-  | SelectCategory String
+  | SelectCategory Category
   | SelectProduct Product
   | RemoveProduct Product
   | SubmitRoster
+  | NoOp
+
+selectCategory : String -> Msg
+selectCategory = SelectCategory << categoryFromString

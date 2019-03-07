@@ -14,7 +14,6 @@ import Home exposing (..)
 import Models exposing (..)
 import Msgs exposing (..)
 import Roster exposing (..)
-import Types exposing (..)
 import Update exposing (..)
 
 main =

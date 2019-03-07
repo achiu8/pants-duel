@@ -21,3 +21,6 @@ update msg model =
 
     SubmitRoster ->
       (model, submitRoster model.roster)
+
+    NoOp ->
+      (model, Cmd.none)

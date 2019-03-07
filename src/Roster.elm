@@ -2,6 +2,7 @@ module Roster exposing (..)
 
 import Bootstrap.Button as Button
 import Bootstrap.Grid as Grid
+import Bootstrap.Grid.Col as Col
 import FontAwesome.Attributes as Icon
 import FontAwesome.Icon as Icon
 import FontAwesome.Solid as Icon
@@ -11,18 +12,7 @@ import Html.Events exposing (..)
 
 import Models exposing (..)
 import Msgs exposing (..)
-import Styles exposing (..)
-import Types exposing (..)
 import Utils exposing (..)
-
-categories : List String
-categories =
-  [ "bottoms"
-  , "tops"
-  , "outerwear"
-  , "suits"
-  , "accessories"
-  ]
 
 view : Model -> Html Msg
 view model =
@@ -41,10 +31,10 @@ view model =
         [ text "Submit Roster" ]
       ]
     , select
-      [ onInput SelectCategory
+      [ onInput selectCategory
       , style "width" "100%"
       ]
-      (List.map selectOption categories)
+      (List.map (selectOption << categoryDisplay) categories)
     , productsList model
     ]
 
@@ -62,31 +52,34 @@ productsList model =
 productRow : List Product -> Product -> Html Msg
 productRow roster product =
   let selected = List.member product roster
-      action = if selected then RemoveProduct else SelectProduct
+      selectable = budgetLeft roster >= product.price
+      action = if selected
+                 then RemoveProduct
+                 else if selectable
+                   then SelectProduct
+                   else (always NoOp)
   in
-  Grid.row []
-    [ Grid.col []
-      [ img
-        [ src "https://png.pngtree.com/svg/20170804/7007aea49e.svg"
-        , style "height" "100px"
+  div [ style "margin-top" "20px" ]
+    [ Grid.row []
+      [ Grid.col []
+        [ img [ src (categoryImage product.category) , style "height" "100px" ] []
         ]
-        []
-      ]
-    , Grid.col []
-      [ div
-        [ style "position" "relative"
-        , style "top" "50%"
-        , style "transform" "translateY(-50%)"
+      , Grid.col [ Col.middleMd ]
+        [ div []
+          [ div [] [ text product.name ]
+          , div [] [ text (String.fromInt product.price) ]
+          ]
         ]
-        [ div [] [ text product.name ]
-        , div [] [ text (String.fromInt product.price) ]
-        ]
-      ]
-    , Grid.col []
-      [ div [ onClick (action product), style "line-height" "100px" ]
-        [ if selected
-          then Icon.viewStyled [ Icon.fa2x, style "color" "Green" ] Icon.checkCircle
-          else Icon.viewStyled [ Icon.fa2x ] Icon.plusCircle
+      , Grid.col [ Col.middleMd ]
+        [ div [ onClick (action product) ]
+          [ if selected
+              then Icon.viewStyled [ Icon.fa2x, style "color" "Green" ] Icon.checkCircle
+              else Icon.viewStyled
+                     [ Icon.fa2x
+                     , style "color" (if selectable then "black" else "lightgrey")
+                     ]
+                     Icon.plusCircle
+          ]
         ]
       ]
     ]
