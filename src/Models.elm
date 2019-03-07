@@ -4,7 +4,6 @@ type Page
   = Home
   | Roster
 
-
 type Category
   = Bottoms
   | Tops
@@ -26,6 +25,12 @@ type alias Model =
   , category : Category
   , roster : List Product
   , products : List Product
+  , leaderboard : List User
+  }
+
+type alias User =
+  { email : String
+  , roster : List Product
   }
 
 categories : List Category
@@ -45,4 +50,5 @@ initialModel =
   , category = Bottoms
   , roster = []
   , products = []
+  , leaderboard = []
   }

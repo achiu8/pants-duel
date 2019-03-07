@@ -50,5 +50,14 @@ productDecoder =
 productsDecoder : Decoder (List Product)
 productsDecoder = Decode.field "products" (Decode.list productDecoder)
 
+userDecoder : Decoder User
+userDecoder =
+  Decode.succeed User
+    |> required "email" string
+    |> required "roster" productsDecoder
+
+leaderboardDecoder : Decoder (List User)
+leaderboardDecoder = Decode.field "leaderboard" (Decode.list userDecoder)
+
 currency : Int -> String
 currency = String.append "$" << format { usLocale | decimals = 0 } << toFloat
