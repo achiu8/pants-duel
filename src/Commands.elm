@@ -4,14 +4,25 @@ import Http
 
 import Models exposing (..)
 import Msgs exposing (..)
+import Queries exposing (..)
 import Utils exposing (..)
+
+endpoint = "https://f5zps1a0u7.execute-api.us-east-1.amazonaws.com/dev/graphql"
 
 fetchProducts : Cmd Msg
 fetchProducts =
-  Http.get
-    { url = "http://localhost:9000/products"
+  Http.post
+    { url = endpoint
+    , body = Http.jsonBody productsQuery
     , expect = Http.expectJson ReceivedProducts productsDecoder
     }
+
+-- fetchProducts : Cmd Msg
+-- fetchProducts =
+--   Http.get
+--     { url = "http://localhost:9000/products"
+--     , expect = Http.expectJson ReceivedProducts productsDecoder
+--     }
 
 fetchResults : Cmd Msg
 fetchResults =
