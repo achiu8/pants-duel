@@ -24,6 +24,7 @@ type alias Model =
   { page : Page
   , email : String
   , loggedIn : Bool
+  , submitted : Bool
   , category : Category
   , roster : List Product
   , products : List Product
@@ -49,6 +50,7 @@ initialModel =
   { page = Home
   , email = ""
   , loggedIn = False
+  , submitted = False
   , category = Bottoms
   , roster = []
   , products = []

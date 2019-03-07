@@ -3,6 +3,7 @@ module Update exposing (..)
 import Commands exposing (..)
 import Models exposing (..)
 import Msgs exposing (..)
+import Utils exposing (..)
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
@@ -14,7 +15,7 @@ update msg model =
       ({ model | loggedIn = True }, Cmd.none)
 
     UpdateEmail email ->
-      ({ model | email = email }, Cmd.none)
+      update CheckSubmitted { model | email = email }
 
     SelectCategory category ->
       ({ model | category = category }, Cmd.none)
@@ -35,12 +36,15 @@ update msg model =
     ReceivedResults result ->
       case result of
         Ok results ->
-          ({ model | results = results }, Cmd.none)
+          update CheckSubmitted { model | results = results }
         Err _ ->
           ({ model | email = "there was an erro" }, Cmd.none)
 
     SubmitRoster ->
       (model, submitRoster model)
+
+    CheckSubmitted ->
+      ({ model | submitted = alreadySubmitted model }, Cmd.none)
 
     NoOp ->
       (model, Cmd.none)

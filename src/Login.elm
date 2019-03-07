@@ -13,10 +13,10 @@ view email =
   div []
   [ Input.email [ Input.onInput UpdateEmail ]
   , Button.button
-    [ Button.dark
+    [ Button.onClick (if email == "" then NoOp else Login)
+    , Button.dark
     , Button.attrs
-      [ onClick (if email == "" then NoOp else Login)
-      , style "width" "100%"
+      [ style "width" "100%"
       , style "margin-top" "10px"
       ]
     ]

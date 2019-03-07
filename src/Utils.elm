@@ -77,3 +77,8 @@ resultsDecoder = Decode.field "results" (Decode.list userDecoder)
 
 currency : Int -> String
 currency = String.append "$" << format { usLocale | decimals = 0 } << toFloat
+
+alreadySubmitted : Model -> Bool
+alreadySubmitted model =
+  let matches = List.filter (\user -> user.email == model.email) model.results
+  in List.length matches > 0

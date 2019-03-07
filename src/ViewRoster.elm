@@ -20,14 +20,15 @@ view model =
       [ text ("Roster spots filled: " ++ String.fromInt (List.length model.roster)) ]
     , div []
       [ Button.button
-        [ Button.dark
+        [ Button.onClick SubmitRoster
+        , Button.disabled model.submitted
+        , Button.dark
         , Button.attrs
-          [ onClick SubmitRoster
-          , style "width" "100%"
+          [ style "width" "100%"
           , style "margin" "10px 0"
           ]
         ]
-        [ text "Submit Roster" ]
+        [ text (if model.submitted then "Roster Submitted" else "Submit Roster") ]
       ]
     , ProductList.view model model.roster True
     , if List.length model.roster == 0

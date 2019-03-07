@@ -15,6 +15,7 @@ type Msg
   | ReceivedProducts (Result Http.Error (List Product))
   | ReceivedResults (Result Http.Error (List User))
   | SubmitRoster
+  | CheckSubmitted
   | NoOp
 
 selectCategory : String -> Msg
