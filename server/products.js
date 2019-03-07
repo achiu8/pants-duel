@@ -15,6 +15,21 @@ module.exports = [
     price: 1500,
   },
   {
+    name: 'Stretch Denim',
+    category: 'bottoms',
+    price: 1000,
+  },
+  {
+    name: 'Fleece Joggers',
+    category: 'bottoms',
+    price: 500,
+  },
+  {
+    name: 'Banzai Shorts',
+    category: 'bottoms',
+    price: 500,
+  },
+  {
     name: 'Riviera Short Sleeve',
     category: 'tops',
     price: 2000,

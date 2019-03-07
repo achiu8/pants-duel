@@ -30,10 +30,9 @@ view model =
         ]
         [ text (if model.submitted then "Roster Submitted" else "Submit Roster") ]
       ]
-    , ProductList.view model model.roster True
     , if List.length model.roster == 0
         then text "You haven't drafted any products."
-        else text ""
+        else ProductList.view model model.roster True
     ]
 
 selectOption : String -> Select.Item Msg

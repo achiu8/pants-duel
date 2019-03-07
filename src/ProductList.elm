@@ -20,7 +20,7 @@ view model products all =
     |> List.filter (\p -> p.category == model.category || all)
     |> List.map (productRow model)
     |> (::) (text (if model.submitted then "Your roster has been submitted for today. Check results at 5pm." else ""))
-    |> div []
+    |> div [ style "overflow" "auto", style "height" "450px" ]
 
 productRow : Model -> Product -> Html Msg
 productRow model product =
@@ -34,7 +34,7 @@ productRow model product =
                      then SelectProduct
                      else (always NoOp)
   in
-  div [ style "margin-top" "20px" ]
+  div [ style "padding" "10px 0", style "border-bottom" "1px solid grey" ]
     [ Grid.row []
       [ Grid.col [ Col.xs3 ]
         [ img [ src (categoryImage product.category) , style "height" "100px" ] []
@@ -46,7 +46,7 @@ productRow model product =
           ]
         ]
       , Grid.col [ Col.middleXs, Col.textAlign Text.alignXsRight ]
-        [ div [ onClick (action product) ]
+        [ div [ onClick (action product), style "padding-right" "10px" ]
           [ if selected
               then Icon.viewStyled [ Icon.fa2x, style "color" "Green" ] Icon.checkCircle
               else Icon.viewStyled
