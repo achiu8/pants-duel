@@ -1,5 +1,5 @@
 [build]
-  command = "elm make src/Main.elm --output=dist/main.js"
+  command = "npm install -g elm && elm make src/Main.elm --output=dist/main.js"
   publish = "dist"
 
 [[redirects]]
