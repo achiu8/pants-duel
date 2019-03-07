@@ -3,6 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const products = require('./products')
 const results = require('./results')
+const score = require('./score')
 
 const app = express()
 
@@ -20,7 +21,7 @@ app.get('/results', (req, res) => {
 })
 
 app.post('/roster', (req, res) => {
-  submittedResults.push(req.body)
+  submittedResults.push({ ...req.body, score: score() })
   res.json({ results: [...results(), ...submittedResults] })
 })
 

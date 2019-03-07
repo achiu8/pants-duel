@@ -1,4 +1,5 @@
 const products = require('./products')
+const score = require('./score')
 
 const buildRoster = () =>
   Array(5).fill(null)
@@ -16,5 +17,5 @@ module.exports = () =>
   users.map(email => ({
     email,
     roster: buildRoster(),
-    score: Math.floor(Math.random() * 500)
+    score: score()
   }))
