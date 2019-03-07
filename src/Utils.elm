@@ -1,12 +1,14 @@
 module Utils exposing (..)
 
+import FormatNumber exposing (format)
+import FormatNumber.Locales exposing (usLocale)
 import Json.Decode as Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
 
 import Models exposing (..)
 
 budgetLeft : List Product -> Int
-budgetLeft = List.foldr (\p left -> left - p.price) 50
+budgetLeft = List.foldr (\p left -> left - p.price) 5000
 
 categoryDisplay : Category -> String
 categoryDisplay category =
@@ -47,3 +49,6 @@ productDecoder =
 
 productsDecoder : Decoder (List Product)
 productsDecoder = Decode.field "products" (Decode.list productDecoder)
+
+currency : Int -> String
+currency = String.append "$" << format { usLocale | decimals = 0 } << toFloat

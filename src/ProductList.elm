@@ -39,7 +39,7 @@ productRow roster product =
       , Grid.col [ Col.middleXs, Col.xs6 ]
         [ div []
           [ div [] [ text product.name ]
-          , div [] [ text (String.fromInt product.price) ]
+          , div [] [ text (currency product.price) ]
           ]
         ]
       , Grid.col [ Col.middleXs, Col.textAlign Text.alignXsRight ]

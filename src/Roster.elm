@@ -17,7 +17,7 @@ import Utils exposing (..)
 view : Model -> Html Msg
 view model =
   div []
-    [ header (String.fromInt (budgetLeft model.roster))
+    [ header (currency (budgetLeft model.roster))
     , div [ style "text-align" "center" ]
       [ text ("Roster spots filled: " ++ String.fromInt (List.length model.roster)) ]
     , div []

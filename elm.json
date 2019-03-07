@@ -7,6 +7,7 @@
     "dependencies": {
         "direct": {
             "NoRedInk/elm-json-decode-pipeline": "1.0.0",
+            "cuducos/elm-format-number": "6.0.2",
             "elm/browser": "1.0.1",
             "elm/core": "1.0.2",
             "elm/html": "1.0.0",
@@ -25,6 +26,7 @@
             "elm/file": "1.0.4",
             "elm/svg": "1.0.1",
             "elm/virtual-dom": "1.0.2",
+            "myrho/elm-round": "1.0.4",
             "rtfeldman/elm-hex": "1.0.0"
         }
     },
