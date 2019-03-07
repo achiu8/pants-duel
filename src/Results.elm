@@ -13,7 +13,7 @@ view : Model -> Html Msg
 view model =
   div []
     [ Header.view  []
-    , h3 [ center, style "margin-bottom" "20px" ] [ text "Yesterday's Results" ]
+    , h3 [ center, style "margin-bottom" "20px" ] [ text "Game Results" ]
     , Table.table
       { options = [ Table.striped ]
       , thead = Table.simpleThead
