@@ -21,7 +21,7 @@ view model =
     , div []
       [ Button.button
         [ Button.onClick SubmitRoster
-        , Button.disabled model.submitted
+        , Button.disabled (model.submitted || not (validRoster model.roster))
         , Button.dark
         , Button.attrs
           [ style "width" "100%"

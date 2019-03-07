@@ -90,3 +90,8 @@ rosterFromResults model =
   in case matches of
       user :: _ -> user.roster
       _         -> []
+
+validRoster : List Product -> Bool
+validRoster roster =
+  categories
+    |> List.all (\c -> List.any (\p -> p.category == c) roster)
