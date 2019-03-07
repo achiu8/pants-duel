@@ -13,7 +13,7 @@ type Msg
   | SelectProduct Product
   | RemoveProduct Product
   | ReceivedProducts (Result Http.Error (List Product))
-  | ReceivedLeaderboard (Result Http.Error (List User))
+  | ReceivedResults (Result Http.Error (List User))
   | SubmitRoster
   | NoOp
 

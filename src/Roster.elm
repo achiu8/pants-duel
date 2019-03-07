@@ -5,6 +5,8 @@ import Bootstrap.Grid as Grid
 import Bootstrap.Grid.Col as Col
 import Bootstrap.Form.Select as Select
 import Bootstrap.Text as Text
+import FontAwesome.Icon as Icon
+import FontAwesome.Solid as Icon
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -45,7 +47,10 @@ header : String -> Html Msg
 header budget =
   Grid.row []
     [ Grid.col []
-      [ div [ onClick (View Home) ] [ text "Back to Home" ] ]
+      [ div [ onClick (View Home) ]
+        [ Icon.viewStyled [ style "margin-right" "10px" ] Icon.chevronLeft
+        , text "Back to Home" ]
+        ]
     , Grid.col [ Col.textAlign Text.alignXsRight ]
       [ div [] [ text ("Budget Left: " ++ budget) ] ]
     ]

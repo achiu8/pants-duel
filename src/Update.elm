@@ -28,14 +28,14 @@ update msg model =
     ReceivedProducts result ->
       case result of
         Ok products ->
-          ({ model | products = products }, fetchLeaderboard)
+          ({ model | products = products }, fetchResults)
         Err _ ->
           (model, Cmd.none)
 
-    ReceivedLeaderboard result ->
+    ReceivedResults result ->
       case result of
-        Ok leaderboard ->
-          ({ model | leaderboard = leaderboard }, Cmd.none)
+        Ok results ->
+          ({ model | results = results }, Cmd.none)
         Err _ ->
           (model, Cmd.none)
 

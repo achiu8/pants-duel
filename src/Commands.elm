@@ -13,11 +13,11 @@ fetchProducts =
     , expect = Http.expectJson ReceivedProducts productsDecoder
     }
 
-fetchLeaderboard : Cmd Msg
-fetchLeaderboard =
+fetchResults : Cmd Msg
+fetchResults =
   Http.get
-    { url = "http://localhost:9000/leaderboard"
-    , expect = Http.expectJson ReceivedLeaderboard leaderboardDecoder
+    { url = "http://localhost:9000/results"
+    , expect = Http.expectJson ReceivedResults resultsDecoder
     }
 
 submitRoster : List Product -> Cmd Msg

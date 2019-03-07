@@ -25,7 +25,7 @@ type alias Model =
   , category : Category
   , roster : List Product
   , products : List Product
-  , leaderboard : List User
+  , results : List User
   }
 
 type alias User =
@@ -50,5 +50,5 @@ initialModel =
   , category = Bottoms
   , roster = []
   , products = []
-  , leaderboard = []
+  , results = []
   }
