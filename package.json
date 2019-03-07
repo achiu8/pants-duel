@@ -1,0 +1,21 @@
+{
+  "name": "pants-duel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/achiu8/pants-duel.git",
+  "author": "Andy Chiu <achiu8@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "./node_modules/concurrently/bin/concurrently.js \"yarn run client\" \"yarn run server\"",
+    "client": "elm reactor",
+    "server": "./node_modules/nodemon/bin/nodemon.js server/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.10"
+  }
+}
