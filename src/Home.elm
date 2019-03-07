@@ -18,6 +18,9 @@ type alias Panel =
   , text : String
   }
 
+introText : String
+introText = "Welcome to PantsDuel - the most exciting way to learn about Bonobos product assortment and sales metrics!"
+
 panels : List Panel
 panels =
   [ Panel (View Roster) "Build Your Daily Roster"
@@ -29,15 +32,19 @@ panels =
 view : Html Msg
 view =
   div []
-    (p [] [ text "Welcome to PantsDuel" ] :: List.map panel panels)
+    (p [] [ text introText ] :: List.map panel panels)
 
 panel : Panel -> Html Msg
 panel p =
-  div [ onClick p.onClick , style "margin-top" "20px" ]
+  div
+    [ onClick p.onClick
+    , style "line-height" "75px"
+    , style "border-top" "1px solid grey"
+    ]
     [ Grid.row []
-      [ Grid.col [ Col.middleMd ]
+      [ Grid.col [ Col.middleXs ]
         [ div [] [ text p.text ] ]
-      , Grid.col [ Col.middleMd, Col.textAlign Text.alignMdRight ]
+      , Grid.col [ Col.middleXs, Col.textAlign Text.alignXsRight ]
         [ Icon.viewStyled [ Icon.lg ] Icon.chevronRight ]
       ]
     ]

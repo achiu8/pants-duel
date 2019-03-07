@@ -37,7 +37,13 @@ view model =
   Grid.container [ style "max-width" "600px" ]
     [ CDN.stylesheet
     , Icon.css
-    , h1 [] [ text "Bonobos" ]
+    , div [ style "text-align" "center" ]
+      [ img
+        [ src "https://s3-us-west-1.amazonaws.com/static-friendbuy-com/widget/bonobos/landing/img/logo.png"
+        , style "width" "80%"
+        , style "margin" "25px 0"
+        ] []
+      ]
     , contents model
     ]
 

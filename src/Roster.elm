@@ -18,15 +18,16 @@ import Utils exposing (..)
 view : Model -> Html Msg
 view model =
   div []
-    [ div [ onClick (View Home) ] [ text "Back to Home" ]
-    , div [] [ text ("Budget Left: " ++ String.fromInt (budgetLeft model.roster)) ]
-    , div [] [ text ("Slots filled: " ++ String.fromInt (List.length model.roster)) ]
+    [ header (String.fromInt (budgetLeft model.roster))
+    , div [ style "text-align" "center" ]
+      [ text ("Roster spots filled: " ++ String.fromInt (List.length model.roster)) ]
     , div []
       [ Button.button
         [ Button.primary
         , Button.attrs
           [ onClick SubmitRoster
           , style "width" "100%"
+          , style "margin" "10px 0"
           ]
         ]
         [ text "Submit Roster" ]
@@ -37,6 +38,15 @@ view model =
       ]
       (List.map (selectOption << categoryDisplay) categories)
     , productsList model
+    ]
+
+header : String -> Html Msg
+header budget =
+  Grid.row []
+    [ Grid.col []
+      [ div [ onClick (View Home) ] [ text "Back to Home" ] ]
+    , Grid.col [ Col.textAlign Text.alignXsRight ]
+      [ div [] [ text ("Budget Left: " ++ budget) ] ]
     ]
 
 selectOption : String -> Html Msg
@@ -65,13 +75,13 @@ productRow roster product =
       [ Grid.col []
         [ img [ src (categoryImage product.category) , style "height" "100px" ] []
         ]
-      , Grid.col [ Col.middleMd ]
+      , Grid.col [ Col.middleXs ]
         [ div []
           [ div [] [ text product.name ]
           , div [] [ text (String.fromInt product.price) ]
           ]
         ]
-      , Grid.col [ Col.middleMd, Col.textAlign Text.alignMdRight ]
+      , Grid.col [ Col.middleXs, Col.textAlign Text.alignXsRight ]
         [ div [ onClick (action product) ]
           [ if selected
               then Icon.viewStyled [ Icon.fa2x, style "color" "Green" ] Icon.checkCircle
