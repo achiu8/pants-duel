@@ -40,7 +40,12 @@ productRow model product =
       ]
     [ Grid.row []
       [ Grid.col [ Col.xs3 ]
-        [ img [ src (categoryImage product.category) , style "width" "100%" ] []
+        [ img
+          [ src (categoryImage product.category)
+          , style "width" "100%"
+          , style "max-height" "100px"
+          ]
+          []
         ]
       , Grid.col [ Col.xs7, Col.middleXs ]
         [ div []
