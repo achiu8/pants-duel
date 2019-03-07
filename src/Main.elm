@@ -54,7 +54,7 @@ view model =
 contents : Model -> Html Msg
 contents model =
   if not model.loggedIn
-    then Login.view
+    then Login.view model.email
     else case model.page of
            Home -> Home.view
            BuildRoster -> BuildRoster.view model

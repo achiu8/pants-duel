@@ -8,18 +8,14 @@ import Html.Events exposing (..)
 
 import Msgs exposing (..)
 
-view : Html Msg
-view =
+view : String -> Html Msg
+view email =
   div []
-  [ Input.email
-    [ Input.attrs
-      [ onInput UpdateEmail
-      , placeholder "Email" ]
-    ]
+  [ Input.email [ Input.onInput UpdateEmail ]
   , Button.button
     [ Button.dark
     , Button.attrs
-      [ onClick Login
+      [ onClick (if email == "" then NoOp else Login)
       , style "width" "100%"
       , style "margin-top" "10px"
       ]
