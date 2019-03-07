@@ -40,7 +40,7 @@ update msg model =
           ({ model | email = "there was an erro" }, Cmd.none)
 
     SubmitRoster ->
-      (model, submitRoster model.roster)
+      (model, submitRoster model)
 
     NoOp ->
       (model, Cmd.none)

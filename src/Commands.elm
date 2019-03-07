@@ -20,5 +20,10 @@ fetchResults =
     , expect = Http.expectJson ReceivedResults resultsDecoder
     }
 
-submitRoster : List Product -> Cmd Msg
-submitRoster roster = Cmd.none
+submitRoster : Model -> Cmd Msg
+submitRoster model =
+  Http.post
+    { url = "http://localhost:9000/roster"
+    , body = Http.jsonBody (rosterEncoder model)
+    , expect = Http.expectJson ReceivedResults resultsDecoder
+    }

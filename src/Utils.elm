@@ -4,6 +4,7 @@ import FormatNumber exposing (format)
 import FormatNumber.Locales exposing (usLocale)
 import Json.Decode as Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
+import Json.Encode as Encode exposing (..)
 
 import Models exposing (..)
 
@@ -43,17 +44,32 @@ categoryImage category =
 productDecoder : Decoder Product
 productDecoder =
   Decode.succeed Product
-   |> required "name" string
-   |> required "category" (Decode.map categoryFromString string)
-   |> required "price" int
+   |> required "name" Decode.string
+   |> required "category" (Decode.map categoryFromString Decode.string)
+   |> required "price" Decode.int
 
 productsDecoder : Decoder (List Product)
 productsDecoder = Decode.field "products" (Decode.list productDecoder)
 
+productEncoder : Product -> Encode.Value
+productEncoder product =
+  object
+    [ ("name", Encode.string product.name)
+    , ("category", Encode.string (String.toLower (categoryDisplay product.category)))
+    , ("price", Encode.int product.price)
+    ]
+
+rosterEncoder : Model -> Encode.Value
+rosterEncoder model =
+  object
+    [ ("email", Encode.string model.email)
+    , ("roster", Encode.list productEncoder model.roster)
+    ]
+
 userDecoder : Decoder User
 userDecoder =
   Decode.succeed User
-    |> required "email" string
+    |> required "email" Decode.string
     |> required "roster" (Decode.list productDecoder)
 
 resultsDecoder : Decoder (List User)
