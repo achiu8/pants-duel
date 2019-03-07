@@ -18,18 +18,20 @@ view : Model -> List Product -> Bool -> Html Msg
 view model products all =
   products
     |> List.filter (\p -> p.category == model.category || all)
-    |> List.map (productRow model.roster)
+    |> List.map (productRow model)
     |> div []
 
-productRow : List Product -> Product -> Html Msg
-productRow roster product =
-  let selected = List.member product roster
-      selectable = budgetLeft roster >= product.price
-      action = if selected
-                 then RemoveProduct
-                 else if selectable
-                   then SelectProduct
-                   else (always NoOp)
+productRow : Model -> Product -> Html Msg
+productRow model product =
+  let selected = List.member product model.roster
+      selectable = budgetLeft model.roster >= product.price
+      action = if model.submitted
+                 then (always NoOp)
+                 else if selected
+                   then RemoveProduct
+                   else if selectable
+                     then SelectProduct
+                     else (always NoOp)
   in
   div [ style "margin-top" "20px" ]
     [ Grid.row []
