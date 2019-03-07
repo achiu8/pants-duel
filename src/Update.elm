@@ -12,10 +12,10 @@ update msg model =
       ({ model | page = page }, Cmd.none)
 
     Login ->
-      ({ model | loggedIn = True }, Cmd.none)
+      update CheckSubmitted { model | loggedIn = True }
 
     UpdateEmail email ->
-      update CheckSubmitted { model | email = email }
+      ({ model | email = email }, Cmd.none)
 
     SelectCategory category ->
       ({ model | category = category }, Cmd.none)
