@@ -29,4 +29,3 @@ view model =
 selectOption : String -> Select.Item Msg
 selectOption v =
   Select.item [] [ text v ]
-

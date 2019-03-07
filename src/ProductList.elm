@@ -34,7 +34,10 @@ productRow model product =
                      then SelectProduct
                      else (always NoOp)
   in
-  div [ style "padding" "10px 0", style "border-bottom" "1px solid grey" ]
+  div [ onClick (action product)
+      , style "padding" "10px 0"
+      , style "border-bottom" "1px solid grey"
+      ]
     [ Grid.row []
       [ Grid.col [ Col.xs3 ]
         [ img [ src (categoryImage product.category) , style "height" "100px" ] []
@@ -46,7 +49,7 @@ productRow model product =
           ]
         ]
       , Grid.col [ Col.middleXs, Col.textAlign Text.alignXsRight ]
-        [ div [ onClick (action product), style "padding-right" "10px" ]
+        [ div [ style "padding-right" "10px" ]
           [ if selected
               then Icon.viewStyled [ Icon.fa2x, style "color" "Green" ] Icon.checkCircle
               else Icon.viewStyled
