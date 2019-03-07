@@ -20,7 +20,7 @@ view model products all =
     |> List.filter (\p -> p.category == model.category || all)
     |> List.map (productRow model)
     |> (::) (text (if model.submitted then "Your roster has been submitted for today. Check results at 5pm." else ""))
-    |> div [ style "overflow" "auto", style "height" "450px" ]
+    |> div [ style "overflow" "auto" ]
 
 productRow : Model -> Product -> Html Msg
 productRow model product =

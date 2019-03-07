@@ -13,16 +13,16 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.get('/products', (req, res) => {
-  res.json({ products })
+  res.json({ data: { allProducts: products } })
 })
 
 app.get('/results', (req, res) => {
-  res.json({ results: [...results(), ...submittedResults] })
+  res.json({ data: { allRosters: [...results(), ...submittedResults] } })
 })
 
 app.post('/roster', (req, res) => {
   submittedResults.push({ ...req.body, score: score() })
-  res.json({ results: [...results(), ...submittedResults] })
+  res.json({ data: { allRosters: [...results(), ...submittedResults] } })
 })
 
 app.listen(9000, () => console.log('listening...'))

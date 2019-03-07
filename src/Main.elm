@@ -59,4 +59,4 @@ contents model =
            Home -> Home.view
            BuildRoster -> BuildRoster.view model
            ViewRoster -> ViewRoster.view model
-           Results -> Results.view model
+           Results -> Results.view model Current

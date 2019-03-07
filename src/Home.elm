@@ -25,8 +25,8 @@ panels : List Panel
 panels =
   [ Panel (View BuildRoster) "Build Your Daily Roster"
   , Panel (View ViewRoster) "View / Submit Your Daily Roster"
-  , Panel (View Results) "View Last Game Results"
-  , Panel NoOp "Leaderboard"
+  , Panel (View Results) "View Current Game Results"
+  , Panel (View Results) "View Previous Game Results"
   ]
 
 view : Html Msg

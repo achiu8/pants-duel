@@ -14,6 +14,10 @@ type Category
   | Accessories
   | Other
 
+type Game
+  = Current
+  | Previous
+
 type alias Product =
   { name : String
   , category : Category

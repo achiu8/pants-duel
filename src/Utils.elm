@@ -50,7 +50,10 @@ productDecoder =
    |> required "price" Decode.int
 
 productsDecoder : Decoder (List Product)
-productsDecoder = Decode.field "products" (Decode.list productDecoder)
+productsDecoder =
+  Decode.list productDecoder
+    |> Decode.field "allProducts"
+    |> Decode.field "data"
 
 productEncoder : Product -> Encode.Value
 productEncoder product =
@@ -75,7 +78,10 @@ userDecoder =
     |> required "roster" (Decode.list productDecoder)
 
 resultsDecoder : Decoder (List User)
-resultsDecoder = Decode.field "results" (Decode.list userDecoder)
+resultsDecoder =
+  Decode.list userDecoder
+    |> Decode.field "allRosters"
+    |> Decode.field "data"
 
 currency : Int -> String
 currency = String.append "$" << format { usLocale | decimals = 0 } << toFloat

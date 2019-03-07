@@ -9,15 +9,18 @@ import Models exposing (..)
 import Msgs exposing (..)
 import Utils exposing (..)
 
-view : Model -> Html Msg
-view model =
-  let sorted = sortWithRank model.results
+view : Model -> Game -> Html Msg
+view model game =
+  let title = if game == Current then "Current" else "Previous"
+      results = if game == Current then model.results else model.results
+      sorted = sortWithRank results
       current = List.filter (\(_, user) -> user.email == model.email) sorted
       found = not (List.isEmpty current)
   in
   div []
     [ Header.view  []
-    , h3 [ center, style "margin-bottom" "20px" ] [ text "Game Results" ]
+    , h3 [ center, style "margin-bottom" "20px" ]
+      [ text (title ++ " Game Results") ]
     , Table.table
       { options = [ Table.hover ]
       , thead = Table.simpleThead
