@@ -3,6 +3,7 @@ module Roster exposing (..)
 import Bootstrap.Button as Button
 import Bootstrap.Grid as Grid
 import Bootstrap.Grid.Col as Col
+import Bootstrap.Form.Select as Select
 import Bootstrap.Text as Text
 import FontAwesome.Attributes as Icon
 import FontAwesome.Icon as Icon
@@ -32,9 +33,11 @@ view model =
         ]
         [ text "Submit Roster" ]
       ]
-    , select
-      [ onInput selectCategory
-      , style "width" "100%"
+    , Select.select
+      [ Select.attrs
+        [ onInput selectCategory
+        , style "width" "100%"
+        ]
       ]
       (List.map (selectOption << categoryDisplay) categories)
     , productsList model
@@ -49,9 +52,9 @@ header budget =
       [ div [] [ text ("Budget Left: " ++ budget) ] ]
     ]
 
-selectOption : String -> Html Msg
+selectOption : String -> Select.Item Msg
 selectOption v =
-  option [] [ text v ]
+  Select.item [] [ text v ]
 
 productsList : Model -> Html Msg
 productsList model =
