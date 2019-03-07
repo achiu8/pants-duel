@@ -10,6 +10,12 @@ update msg model =
     View page ->
       ({ model | page = page }, Cmd.none)
 
+    Login ->
+      ({ model | loggedIn = True }, Cmd.none)
+
+    UpdateEmail email ->
+      ({ model | email = email }, Cmd.none)
+
     SelectCategory category ->
       ({ model | category = category }, Cmd.none)
 

@@ -11,6 +11,7 @@ import Task
 import Time
 
 import Home exposing (..)
+import Login exposing (..)
 import Models exposing (..)
 import Msgs exposing (..)
 import Roster exposing (..)
@@ -49,6 +50,8 @@ view model =
 
 contents : Model -> Html Msg
 contents model =
-  case model.page of
-    Home -> Home.view
-    Roster -> Roster.view model
+  if not model.loggedIn
+    then Login.view
+    else case model.page of
+           Home -> Home.view
+           Roster -> Roster.view model

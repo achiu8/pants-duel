@@ -5,6 +5,8 @@ import Utils exposing (..)
 
 type Msg
   = View Page
+  | Login
+  | UpdateEmail String
   | SelectCategory Category
   | SelectProduct Product
   | RemoveProduct Product
