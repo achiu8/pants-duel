@@ -20,7 +20,7 @@ view model =
         [ Table.th [ cellCenter ] [ text "User" ]
         , Table.th [ cellCenter ] [ text "Score" ]
         ]
-      , tbody = Table.tbody [] (List.map resultRow model.results)
+      , tbody = Table.tbody [] (sorted model.results)
       }
     ]
 
@@ -30,6 +30,9 @@ resultRow user =
     [ Table.td [] [ text user.email ]
     , Table.td [ cellCenter ] [ text (String.fromInt user.score) ]
     ]
+
+sorted : List User -> List (Table.Row Msg)
+sorted = List.map resultRow << List.reverse << List.sortBy .score
 
 center : Attribute Msg
 center = style "text-align" "center"
