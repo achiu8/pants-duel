@@ -87,10 +87,11 @@ alreadySubmitted = not << (==) 0 << List.length << findInResults
 
 rosterFromResults : Model -> List Product
 rosterFromResults model =
-  let matches = findInResults model
-  in case matches of
+  if List.isEmpty model.roster
+    then case (findInResults model) of
       user :: _ -> user.roster
       _         -> []
+    else model.roster
 
 validRoster : List Product -> Bool
 validRoster roster =
