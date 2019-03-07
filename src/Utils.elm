@@ -54,7 +54,7 @@ userDecoder : Decoder User
 userDecoder =
   Decode.succeed User
     |> required "email" string
-    |> required "roster" productsDecoder
+    |> required "roster" (Decode.list productDecoder)
 
 resultsDecoder : Decoder (List User)
 resultsDecoder = Decode.field "results" (Decode.list userDecoder)

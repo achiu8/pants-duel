@@ -37,7 +37,7 @@ update msg model =
         Ok results ->
           ({ model | results = results }, Cmd.none)
         Err _ ->
-          (model, Cmd.none)
+          ({ model | email = "there was an erro" }, Cmd.none)
 
     SubmitRoster ->
       (model, submitRoster model.roster)

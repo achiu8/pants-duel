@@ -3,6 +3,7 @@ module Models exposing (..)
 type Page
   = Home
   | Roster
+  | Results
 
 type Category
   = Bottoms

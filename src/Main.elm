@@ -15,6 +15,7 @@ import Home exposing (..)
 import Login exposing (..)
 import Models exposing (..)
 import Msgs exposing (..)
+import Results exposing (..)
 import Roster exposing (..)
 import Update exposing (..)
 
@@ -56,3 +57,4 @@ contents model =
     else case model.page of
            Home -> Home.view
            Roster -> Roster.view model
+           Results -> Results.view model
