@@ -23,8 +23,8 @@ introText = "Welcome to PantsDuel - the most exciting way to learn about Bonobos
 
 panels : List Panel
 panels =
-  [ Panel (View Roster) "Build Your Daily Roster"
-  , Panel (View Roster) "View / Submit Your Daily Roster"
+  [ Panel (View BuildRoster) "Build Your Daily Roster"
+  , Panel (View ViewRoster) "View / Submit Your Daily Roster"
   , Panel (View Results) "View Yesterday's Results"
   , Panel NoOp "Leaderboard"
   ]

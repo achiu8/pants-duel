@@ -14,10 +14,10 @@ import Models exposing (..)
 import Msgs exposing (..)
 import Utils exposing (..)
 
-view : Model -> Html Msg
-view model =
-  model.products
-    |> List.filter (\p -> p.category == model.category)
+view : Model -> List Product -> Bool -> Html Msg
+view model products all =
+  products
+    |> List.filter (\p -> p.category == model.category || all)
     |> List.map (productRow model.roster)
     |> div []
 

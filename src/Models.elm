@@ -2,7 +2,8 @@ module Models exposing (..)
 
 type Page
   = Home
-  | Roster
+  | BuildRoster
+  | ViewRoster
   | Results
 
 type Category

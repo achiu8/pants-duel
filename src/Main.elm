@@ -10,14 +10,15 @@ import Json.Decode exposing (Decoder, field, string)
 import Task
 import Time
 
+import BuildRoster exposing (..)
 import Commands exposing (..)
 import Home exposing (..)
 import Login exposing (..)
 import Models exposing (..)
 import Msgs exposing (..)
 import Results exposing (..)
-import Roster exposing (..)
 import Update exposing (..)
+import ViewRoster exposing (..)
 
 main =
   Browser.element
@@ -56,5 +57,6 @@ contents model =
     then Login.view
     else case model.page of
            Home -> Home.view
-           Roster -> Roster.view model
+           BuildRoster -> BuildRoster.view model
+           ViewRoster -> ViewRoster.view model
            Results -> Results.view model

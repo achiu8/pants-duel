@@ -1,4 +1,4 @@
-module Roster exposing (..)
+module ViewRoster exposing (..)
 
 import Bootstrap.Button as Button
 import Bootstrap.Form.Select as Select
@@ -29,14 +29,10 @@ view model =
         ]
         [ text "Submit Roster" ]
       ]
-    , Select.select
-      [ Select.attrs
-        [ onInput selectCategory
-        , style "width" "100%"
-        ]
-      ]
-      (List.map (selectOption << categoryDisplay) categories)
-    , ProductList.view model
+    , ProductList.view model model.roster True
+    , if List.length model.roster == 0
+        then text "You haven't drafted any products."
+        else text ""
     ]
 
 selectOption : String -> Select.Item Msg
