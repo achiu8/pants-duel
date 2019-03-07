@@ -12,7 +12,9 @@ const users = [
   'emily@bonobos.com',
 ]
 
-module.exports = users.map(email => ({
-  email,
-  roster: buildRoster()
-}))
+module.exports = () =>
+  users.map(email => ({
+    email,
+    roster: buildRoster(),
+    score: Math.floor(Math.random() * 500)
+  }))

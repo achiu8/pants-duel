@@ -28,7 +28,7 @@ resultRow : User -> Table.Row Msg
 resultRow user =
   Table.tr []
     [ Table.td [] [ text user.email ]
-    , Table.td [ cellCenter ] [ text "100" ]
+    , Table.td [ cellCenter ] [ text (String.fromInt user.score) ]
     ]
 
 center : Attribute Msg

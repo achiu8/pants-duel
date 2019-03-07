@@ -70,6 +70,7 @@ userDecoder : Decoder User
 userDecoder =
   Decode.succeed User
     |> required "email" Decode.string
+    |> required "score" Decode.int
     |> required "roster" (Decode.list productDecoder)
 
 resultsDecoder : Decoder (List User)

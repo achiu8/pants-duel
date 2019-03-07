@@ -25,7 +25,7 @@ panels : List Panel
 panels =
   [ Panel (View BuildRoster) "Build Your Daily Roster"
   , Panel (View ViewRoster) "View / Submit Your Daily Roster"
-  , Panel (View Results) "View Yesterday's Results"
+  , Panel (View Results) "View Last Game Results"
   , Panel NoOp "Leaderboard"
   ]
 

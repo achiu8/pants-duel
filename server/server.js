@@ -6,7 +6,7 @@ const results = require('./results')
 
 const app = express()
 
-let currentResults = [...results]
+let submittedResults = []
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -16,12 +16,12 @@ app.get('/products', (req, res) => {
 })
 
 app.get('/results', (req, res) => {
-  res.json({ results: currentResults })
+  res.json({ results: [...results(), ...submittedResults] })
 })
 
 app.post('/roster', (req, res) => {
-  currentResults.push(req.body)
-  res.json({ results: currentResults })
+  submittedResults.push(req.body)
+  res.json({ results: [...results(), ...submittedResults] })
 })
 
 app.listen(9000, () => console.log('listening...'))
