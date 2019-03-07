@@ -3,6 +3,7 @@ module Roster exposing (..)
 import Bootstrap.Button as Button
 import Bootstrap.Grid as Grid
 import Bootstrap.Grid.Col as Col
+import Bootstrap.Text as Text
 import FontAwesome.Attributes as Icon
 import FontAwesome.Icon as Icon
 import FontAwesome.Solid as Icon
@@ -70,7 +71,7 @@ productRow roster product =
           , div [] [ text (String.fromInt product.price) ]
           ]
         ]
-      , Grid.col [ Col.middleMd ]
+      , Grid.col [ Col.middleMd, Col.textAlign Text.alignMdRight ]
         [ div [ onClick (action product) ]
           [ if selected
               then Icon.viewStyled [ Icon.fa2x, style "color" "Green" ] Icon.checkCircle
