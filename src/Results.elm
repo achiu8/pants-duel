@@ -19,7 +19,7 @@ view model game =
   in
   div []
     [ Header.view  []
-    , h3 [ center, style "margin-bottom" "20px" ]
+    , h3 [ center, style "margin" "20px" ]
       [ text (title ++ " Game Results") ]
     , Table.table
       { options = [ Table.hover ]
