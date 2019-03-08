@@ -12,12 +12,11 @@ type Msg
   | SelectCategory Category
   | SelectProduct Product
   | RemoveProduct Product
+  | ReceivedInitial (Result Http.Error Initial)
   | ReceivedRoster (Result Http.Error (List Product))
-  | ReceivedProducts (Result Http.Error (List Product))
+  | SubmitRoster
   | FetchResults
   | ReceivedResults (Result Http.Error (List User))
-  | ReceivedPrevious (Result Http.Error (List User))
-  | SubmitRoster
   | CheckSubmitted
   | NoOp
 

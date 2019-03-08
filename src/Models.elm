@@ -45,6 +45,11 @@ type alias User =
   , products : List Product
   }
 
+type alias Initial =
+  { products : List Product
+  , previous : List User
+  }
+
 categories : List Category
 categories =
   [ Bottoms

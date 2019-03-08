@@ -26,6 +26,17 @@ update msg model =
     RemoveProduct product ->
       ({ model | roster = List.filter ((/=) product) model.roster }, Cmd.none)
 
+    ReceivedInitial result ->
+      case result of
+        Ok initial ->
+          update CheckSubmitted
+            { model
+            | products = initial.products
+            , previous = initial.previous
+            }
+        Err _ ->
+          (model, Cmd.none)
+
     ReceivedRoster result ->
       case result of
         Ok roster ->
@@ -33,12 +44,8 @@ update msg model =
         Err _ ->
           (model, Cmd.none)
 
-    ReceivedProducts result ->
-      case result of
-        Ok products ->
-          ({ model | products = products }, fetchResults)
-        Err _ ->
-          (model, Cmd.none)
+    SubmitRoster ->
+      (model, submitRoster model)
 
     FetchResults ->
       (model, fetchResults)
@@ -49,16 +56,6 @@ update msg model =
           update CheckSubmitted { model | results = results }
         Err _ ->
           (model, Cmd.none)
-
-    ReceivedPrevious result ->
-      case result of
-        Ok previous ->
-          ({ model | previous = previous }, fetchProducts)
-        Err _ ->
-          (model, fetchProducts)
-
-    SubmitRoster ->
-      (model, submitRoster model)
 
     CheckSubmitted ->
       ({ model | submitted = alreadySubmitted model } , Cmd.none)

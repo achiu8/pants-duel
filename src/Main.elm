@@ -27,7 +27,7 @@ main =
 
 init : () -> (Model, Cmd Msg)
 init _ =
-  (initialModel, fetchPrevious)
+  (initialModel, fetchInitial)
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =

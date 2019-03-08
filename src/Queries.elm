@@ -15,37 +15,8 @@ queryWithVariable name value q =
     , ("variables", object [(name, value)])
     ]
 
-rosterQuery : String -> Value
-rosterQuery email = queryWithVariable "userName" (string email) """
-  query($userName: String) {
-    roster(userName: $userName) {
-      products {
-        id
-        productName
-        productPrice
-        productCategory
-        productScores {
-          productScore
-        }
-      }
-    }
-  }
-"""
-
-createRosterQuery : Model -> Value
-createRosterQuery model = queryWithVariable "input" (rosterEncoder model) """
-  mutation($input: RosterInput!) {
-    createRoster(input: $input) {
-      roster {
-        userName
-        finalScore
-      }
-    }
-  }
-"""
-
-productsQuery : Value
-productsQuery = query """
+initialQuery : Value
+initialQuery = query """
   {
     allProducts {
       id
@@ -54,6 +25,19 @@ productsQuery = query """
       productCategory
       productScores {
         productScore
+      }
+    }
+    previousRosters {
+      userName
+      finalScore
+      products {
+        id
+        productName
+        productPrice
+        productCategory
+        productScores {
+          productScore
+        }
       }
     }
   }
@@ -78,13 +62,10 @@ resultsQuery = query """
   }
 """
 
-
-previousQuery : Value
-previousQuery = query """
-  {
-    previousRosters {
-      userName
-      finalScore
+rosterQuery : String -> Value
+rosterQuery email = queryWithVariable "userName" (string email) """
+  query($userName: String) {
+    roster(userName: $userName) {
       products {
         id
         productName
@@ -93,6 +74,18 @@ previousQuery = query """
         productScores {
           productScore
         }
+      }
+    }
+  }
+"""
+
+createRosterQuery : Model -> Value
+createRosterQuery model = queryWithVariable "input" (rosterEncoder model) """
+  mutation($input: RosterInput!) {
+    createRoster(input: $input) {
+      roster {
+        userName
+        finalScore
       }
     }
   }

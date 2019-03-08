@@ -27,10 +27,7 @@ productDecoder =
    |> required "productScores" productScoresDecoder
 
 productsDecoder : Decoder (List Product)
-productsDecoder =
-  Decode.list productDecoder
-    |> Decode.field "allProducts"
-    |> Decode.field "data"
+productsDecoder = Decode.list productDecoder
 
 productEncoder : Product -> Encode.Value
 productEncoder product =
@@ -52,14 +49,11 @@ rosterEncoder model =
     ]
 
 rosterDecoder : Decoder (List Product)
-rosterDecoder = Decode.list productDecoder
-
-rosterResponseDecoder : Decoder (List Product)
-rosterResponseDecoder =
-  rosterDecoder 
-   |> Decode.field "products"
-   |> Decode.field "roster"
-   |> Decode.field "data"
+rosterDecoder =
+  productsDecoder
+    |> Decode.field "products"
+    |> Decode.field "roster"
+    |> Decode.field "data"
 
 userDecoder : Decoder User
 userDecoder =
@@ -78,4 +72,11 @@ createRosterDecoder : Decoder User
 createRosterDecoder =
   userDecoder
     |> Decode.field "roster"
+    |> Decode.field "data"
+
+initialDecoder : Decoder Initial
+initialDecoder =
+  Decode.succeed Initial
+    |> required "allProducts" productsDecoder
+    |> required "previousRosters" (Decode.list userDecoder)
     |> Decode.field "data"
