@@ -33,6 +33,14 @@ fetchResults =
     , expect = Http.expectJson ReceivedResults resultsDecoder
     }
 
+fetchPrevious : Cmd Msg
+fetchPrevious =
+  Http.post
+    { url = endpoint
+    , body = Http.jsonBody previousQuery
+    , expect = Http.expectJson ReceivedPrevious resultsDecoder
+    }
+
 submitRoster : Model -> Cmd Msg
 submitRoster model =
   Http.post

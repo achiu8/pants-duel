@@ -16,6 +16,7 @@ type Msg
   | ReceivedProducts (Result Http.Error (List Product))
   | FetchResults
   | ReceivedResults (Result Http.Error (List User))
+  | ReceivedPrevious (Result Http.Error (List User))
   | SubmitRoster
   | CheckSubmitted
   | NoOp

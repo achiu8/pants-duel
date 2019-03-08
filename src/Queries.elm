@@ -77,3 +77,23 @@ resultsQuery = query """
     }
   }
 """
+
+
+previousQuery : Value
+previousQuery = query """
+  {
+    previousRosters {
+      userName
+      finalScore
+      products {
+        id
+        productName
+        productPrice
+        productCategory
+        productScores {
+          productScore
+        }
+      }
+    }
+  }
+"""

@@ -50,6 +50,13 @@ update msg model =
         Err _ ->
           (model, Cmd.none)
 
+    ReceivedPrevious result ->
+      case result of
+        Ok previous ->
+          ({ model | previous = previous }, fetchProducts)
+        Err _ ->
+          (model, fetchProducts)
+
     SubmitRoster ->
       (model, submitRoster model)
 
