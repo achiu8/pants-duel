@@ -40,6 +40,7 @@ panel p =
     [ onClick p.onClick
     , style "line-height" "90px"
     , style "border-top" "1px solid grey"
+    , style "cursor" "pointer"
     ]
     [ Grid.row []
       [ Grid.col [ Col.xs10, Col.middleXs ]

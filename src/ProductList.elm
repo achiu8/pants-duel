@@ -19,8 +19,21 @@ view model products all =
   products
     |> List.filter (\p -> p.category == model.category || all)
     |> List.map (productRow model)
-    |> (::) (text (if model.submitted then "Your roster has been submitted for today. Check results at 5pm." else ""))
+    |> (::) (if model.submitted then submittedMessage else text "")
     |> div [ style "overflow" "auto" ]
+
+submittedMessage : Html Msg
+submittedMessage =
+  div [ style "margin" "10px 0" ]
+    [ text "Your roster has been submitted for today. Check out "
+    , span
+      [ onClick (View Results)
+      , style "text-decoration" "underline"
+      , style "cursor" "pointer"
+      ]
+      [ text "current game results" ]
+    , text "."
+    ]
 
 productRow : Model -> Product -> Html Msg
 productRow model product =
@@ -37,6 +50,7 @@ productRow model product =
   div [ onClick (action product)
       , style "padding" "10px 0"
       , style "border-bottom" "1px solid grey"
+      , style "cursor" "pointer"
       ]
     [ Grid.row []
       [ Grid.col [ Col.xs3 ]

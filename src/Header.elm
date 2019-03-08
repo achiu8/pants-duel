@@ -16,7 +16,7 @@ view : List (Html Msg) -> Html Msg
 view right =
   Grid.row []
     [ Grid.col []
-      [ div [ onClick (View Home) ]
+      [ div [ onClick (View Home), style "cursor" "pointer" ]
         [ Icon.viewStyled [ style "margin-right" "10px" ] Icon.chevronLeft
         , text "Back to Home" ]
         ]
