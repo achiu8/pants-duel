@@ -26,7 +26,12 @@ view model game =
       , thead = Table.simpleThead
         [ Table.th [ cellCenter ] [ text "Rank" ]
         , Table.th [ cellCenter ] [ text "User" ]
-        , Table.th [ cellCenter ] [ text "Score" ]
+        , Table.th [ cellCenter ] [ text "B" ]
+        , Table.th [ cellCenter ] [ text "T" ]
+        , Table.th [ cellCenter ] [ text "O" ]
+        , Table.th [ cellCenter ] [ text "S" ]
+        , Table.th [ cellCenter ] [ text "A" ]
+        , Table.th [ cellCenter ] [ text "Total" ]
         ]
       , tbody = Table.tbody [] (List.indexedMap (resultRow found) (current ++ sorted))
       }
@@ -34,11 +39,26 @@ view model game =
 
 resultRow : Bool -> Int -> (Int, User) -> Table.Row Msg
 resultRow found i (rank, user) =
-  Table.tr (if found && i == 0 then [ Table.rowActive ] else [])
-    [ Table.td [ cellCenter ] [ text (String.fromInt (rank + 1)) ]
-    , Table.td [] [ text user.email ]
-    , Table.td [ cellCenter ] [ text (String.fromInt user.score) ]
-    ]
+  let scores = categoryScores user.products
+      total = List.foldr (+) 0 scores
+  in
+  Table.tr
+    (
+      if found && i == 0
+        then [ Table.rowActive
+             , Table.rowAttr (style "border-bottom" "2px solid grey")
+             ]
+        else []
+    )
+    (
+      [ Table.td [ cellCenter ] [ intHtml (rank + 1) ]
+      , Table.td [] [ text user.email ]
+      ]
+      ++
+      List.map scoreCell scores
+      ++
+      [ Table.td [ cellCenter ] [ intHtml total ] ]
+    )
 
 sortWithRank : List User -> List (Int, User)
 sortWithRank = List.indexedMap Tuple.pair << List.reverse << List.sortBy .score
@@ -48,3 +68,18 @@ center = style "text-align" "center"
 
 cellCenter : Table.CellOption Msg
 cellCenter = Table.cellAttr center
+
+categoryScores : List Product -> List Int
+categoryScores products = List.map (categoryScore products) categories
+
+categoryScore : List Product -> Category -> Int
+categoryScore products category =
+  products
+    |> List.filter (\p -> p.category == category)
+    |> List.foldr (\p acc -> acc + p.score) 0
+
+scoreCell : Int -> Table.Cell Msg
+scoreCell score = Table.td [ cellCenter ] [ intHtml score ]
+
+intHtml : Int -> Html Msg
+intHtml = text << String.fromInt

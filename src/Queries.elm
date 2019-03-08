@@ -24,6 +24,9 @@ rosterQuery email = queryWithVariable "userName" (string email) """
         productName
         productPrice
         productCategory
+        productScores {
+          productScore
+        }
       }
     }
   }
