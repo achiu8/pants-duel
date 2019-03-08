@@ -30,11 +30,14 @@ productEncoder product =
     , ("productPrice", Encode.int product.price)
     ]
 
+productIdEncoder : String -> Encode.Value
+productIdEncoder id = object [("id", Encode.string id)]
+
 rosterEncoder : Model -> Encode.Value
 rosterEncoder model =
   object
-    [ ("email", Encode.string model.email)
-    , ("roster", Encode.list productEncoder model.roster)
+    [ ("userName", Encode.string model.email)
+    , ("products", Encode.list productIdEncoder (List.map .id model.roster))
     ]
 
 rosterDecoder : Decoder (List Product)
@@ -43,19 +46,24 @@ rosterDecoder = Decode.list productDecoder
 rosterResponseDecoder : Decoder (List Product)
 rosterResponseDecoder =
   rosterDecoder 
-   |> Decode.field "roster"
+   |> Decode.field "products"
    |> Decode.field "roster"
    |> Decode.field "data"
 
 userDecoder : Decoder User
 userDecoder =
   Decode.succeed User
-    |> required "email" Decode.string
-    |> required "score" Decode.int
-    |> required "roster" rosterDecoder
+    |> required "userName" Decode.string
+    |> optional "finalScore" Decode.int 0
 
 resultsDecoder : Decoder (List User)
 resultsDecoder =
   Decode.list userDecoder
     |> Decode.field "allRosters"
+    |> Decode.field "data"
+
+createRosterDecoder : Decoder User
+createRosterDecoder =
+  userDecoder
+    |> Decode.field "roster"
     |> Decode.field "data"

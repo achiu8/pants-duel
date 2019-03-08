@@ -2,18 +2,21 @@ module Queries exposing (..)
 
 import Json.Encode exposing (..)
 
+import Json exposing (..)
+import Models exposing (..)
+
 query : String -> Value
 query q = object [("query", string q)]
 
-queryWithVariable : String -> String -> String -> Value
+queryWithVariable : String -> Value -> String -> Value
 queryWithVariable name value q =
   object
     [ ("query", string q)
-    , ("variables", object [(name, string value)])
+    , ("variables", object [(name, value)])
     ]
 
 rosterQuery : String -> Value
-rosterQuery email = queryWithVariable "userName" email """
+rosterQuery email = queryWithVariable "userName" (string email) """
   query($userName: String) {
     roster(userName: $userName) {
       products {
@@ -21,6 +24,18 @@ rosterQuery email = queryWithVariable "userName" email """
         productName
         productPrice
         productCategory
+      }
+    }
+  }
+"""
+
+createRosterQuery : Model -> Value
+createRosterQuery model = queryWithVariable "input" (rosterEncoder model) """
+  mutation($input: RosterInput!) {
+    createRoster(input: $input) {
+      roster {
+        userName
+        finalScore
       }
     }
   }

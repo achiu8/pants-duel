@@ -39,7 +39,6 @@ type alias Model =
 type alias User =
   { email : String
   , score : Int
-  , roster : List Product
   }
 
 categories : List Category

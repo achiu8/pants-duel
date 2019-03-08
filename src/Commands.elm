@@ -27,15 +27,16 @@ fetchProducts =
 
 fetchResults : Cmd Msg
 fetchResults =
-  Http.get
-    { url = "http://localhost:9000/results"
+  Http.post
+    { url = endpoint
+    , body = Http.jsonBody resultsQuery
     , expect = Http.expectJson ReceivedResults resultsDecoder
     }
 
 submitRoster : Model -> Cmd Msg
 submitRoster model =
   Http.post
-    { url = "http://localhost:9000/roster"
-    , body = Http.jsonBody (rosterEncoder model)
+    { url = endpoint
+    , body = Http.jsonBody (createRosterQuery model)
     , expect = Http.expectJson ReceivedResults resultsDecoder
     }
