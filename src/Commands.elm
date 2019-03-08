@@ -17,13 +17,6 @@ fetchProducts =
     , expect = Http.expectJson ReceivedProducts productsDecoder
     }
 
--- fetchProducts : Cmd Msg
--- fetchProducts =
---   Http.get
---     { url = "http://localhost:9000/products"
---     , expect = Http.expectJson ReceivedProducts productsDecoder
---     }
-
 fetchResults : Cmd Msg
 fetchResults =
   Http.get

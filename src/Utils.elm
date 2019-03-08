@@ -10,7 +10,7 @@ import Json.Encode as Encode exposing (..)
 import Models exposing (..)
 
 budgetLeft : List Product -> Int
-budgetLeft = List.foldr (\p left -> left - p.price) 5000
+budgetLeft = List.foldr (\p left -> left - p.price) 10000
 
 categoryDisplay : Category -> String
 categoryDisplay category =
@@ -45,9 +45,9 @@ categoryImage category =
 productDecoder : Decoder Product
 productDecoder =
   Decode.succeed Product
-   |> required "name" Decode.string
-   |> required "category" (Decode.map categoryFromString Decode.string)
-   |> required "price" Decode.int
+   |> required "productName" Decode.string
+   |> required "productCategory" (Decode.map categoryFromString Decode.string)
+   |> required "productPrice" Decode.int
 
 productsDecoder : Decoder (List Product)
 productsDecoder =
