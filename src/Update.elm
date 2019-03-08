@@ -41,7 +41,7 @@ update msg model =
         Ok results ->
           update CheckSubmitted { model | results = results }
         Err _ ->
-          ({ model | email = "there was an erro" }, Cmd.none)
+          (model, Cmd.none)
 
     SubmitRoster ->
       (model, submitRoster model)
