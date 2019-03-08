@@ -5,9 +5,6 @@ import FontAwesome.Styles as Icon
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Http
-import Json.Decode exposing (Decoder, field, string)
-import Task
 import Time
 
 import BuildRoster exposing (..)
