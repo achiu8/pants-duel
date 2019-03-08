@@ -24,15 +24,15 @@ view model game =
     , Table.table
       { options = [ Table.hover ]
       , thead = Table.simpleThead
-        [ Table.th [ cellCenter ] [ text "Rank" ]
-        , Table.th [ cellCenter ] [ text "User" ]
-        , Table.th [ cellCenter ] [ text "B" ]
-        , Table.th [ cellCenter ] [ text "T" ]
-        , Table.th [ cellCenter ] [ text "O" ]
-        , Table.th [ cellCenter ] [ text "S" ]
-        , Table.th [ cellCenter ] [ text "A" ]
-        , Table.th [ cellCenter ] [ text "Total" ]
-        ]
+        (
+          [ Table.th [ cellCenter ] [ text "Rank" ]
+          , Table.th [ cellCenter ] [ text "User" ]
+          ]
+          ++
+          List.map categoryHeader categories
+          ++
+          [ Table.th [ cellCenter ] [ text "Total" ] ]
+        )
       , tbody = Table.tbody [] (List.indexedMap (resultRow found) (current ++ sorted))
       }
     ]
@@ -65,6 +65,16 @@ center = style "text-align" "center"
 
 cellCenter : Table.CellOption Msg
 cellCenter = Table.cellAttr center
+
+categoryHeader : Category -> Table.Cell Msg
+categoryHeader category =
+  Table.th [ cellCenter ]
+    [ img
+      [ src (categoryImage category)
+      , style "width" "28px"
+      ]
+      []
+    ]
 
 categoryScores : List Product -> List Int
 categoryScores products = List.map (categoryScore products) categories

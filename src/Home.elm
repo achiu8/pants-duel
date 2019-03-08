@@ -32,13 +32,13 @@ panels =
 view : Html Msg
 view =
   div []
-    (p [] [ text introText ] :: List.map panel panels)
+    (p [ style "margin-bottom" "25px" ] [ text introText ] :: List.map panel panels)
 
 panel : Panel -> Html Msg
 panel p =
   div
     [ onClick p.onClick
-    , style "line-height" "75px"
+    , style "line-height" "90px"
     , style "border-top" "1px solid grey"
     ]
     [ Grid.row []

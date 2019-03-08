@@ -42,7 +42,7 @@ view model =
       [ img
         [ src "https://s3-us-west-1.amazonaws.com/static-friendbuy-com/widget/bonobos/landing/img/logo.png"
         , style "width" "80%"
-        , style "margin" "25px 0"
+        , style "margin" "50px 0"
         ] []
       ]
     , contents model
