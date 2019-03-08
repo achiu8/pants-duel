@@ -15,3 +15,13 @@ productsQuery = query """
     }
   }
 """
+
+resultsQuery : Value
+resultsQuery = query """
+  {
+    allRosters {
+      userName
+      finalScore
+    }
+  }
+"""

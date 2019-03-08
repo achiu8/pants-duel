@@ -12,7 +12,7 @@ update msg model =
       ({ model | page = page }, Cmd.none)
 
     Login ->
-      update CheckSubmitted { model | loggedIn = True }
+      ({ model | loggedIn = True }, fetchRoster model.email)
 
     UpdateEmail email ->
       ({ model | email = email }, Cmd.none)
@@ -25,6 +25,13 @@ update msg model =
 
     RemoveProduct product ->
       ({ model | roster = List.filter ((/=) product) model.roster }, Cmd.none)
+
+    ReceivedRoster result ->
+      case result of
+        Ok roster ->
+          update CheckSubmitted { model | roster = roster }
+        Err _ ->
+          (model, Cmd.none)
 
     ReceivedProducts result ->
       case result of
@@ -47,9 +54,7 @@ update msg model =
       (model, submitRoster model)
 
     CheckSubmitted ->
-      ( { model | submitted = alreadySubmitted model, roster = rosterFromResults model }
-      , Cmd.none
-      )
+      ({ model | submitted = alreadySubmitted model } , Cmd.none)
 
     NoOp ->
       (model, Cmd.none)

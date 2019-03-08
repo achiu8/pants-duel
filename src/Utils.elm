@@ -48,14 +48,6 @@ findInResults model = List.filter (\user -> user.email == model.email) model.res
 alreadySubmitted : Model -> Bool
 alreadySubmitted = not << (==) 0 << List.length << findInResults
 
-rosterFromResults : Model -> List Product
-rosterFromResults model =
-  if List.isEmpty model.roster
-    then case (findInResults model) of
-      user :: _ -> user.roster
-      _         -> []
-    else model.roster
-
 validRoster : List Product -> Bool
 validRoster roster =
   categories

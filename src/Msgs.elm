@@ -12,6 +12,7 @@ type Msg
   | SelectCategory Category
   | SelectProduct Product
   | RemoveProduct Product
+  | ReceivedRoster (Result Http.Error (List Product))
   | ReceivedProducts (Result Http.Error (List Product))
   | FetchResults
   | ReceivedResults (Result Http.Error (List User))

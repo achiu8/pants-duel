@@ -23,9 +23,9 @@ productsDecoder =
 productEncoder : Product -> Encode.Value
 productEncoder product =
   object
-    [ ("name", Encode.string product.name)
-    , ("category", Encode.string (String.toLower (categoryDisplay product.category)))
-    , ("price", Encode.int product.price)
+    [ ("productName", Encode.string product.name)
+    , ("productCategory", Encode.string (categoryDisplay product.category))
+    , ("productPrice", Encode.int product.price)
     ]
 
 rosterEncoder : Model -> Encode.Value
@@ -35,16 +35,25 @@ rosterEncoder model =
     , ("roster", Encode.list productEncoder model.roster)
     ]
 
+rosterDecoder : Decoder (List Product)
+rosterDecoder = Decode.list productDecoder
+
+rosterResponseDecoder : Decoder (List Product)
+rosterResponseDecoder =
+  rosterDecoder 
+   |> Decode.field "roster"
+   |> Decode.field "roster"
+   |> Decode.field "data"
+
 userDecoder : Decoder User
 userDecoder =
   Decode.succeed User
     |> required "email" Decode.string
     |> required "score" Decode.int
-    |> required "roster" (Decode.list productDecoder)
+    |> required "roster" rosterDecoder
 
 resultsDecoder : Decoder (List User)
 resultsDecoder =
   Decode.list userDecoder
     |> Decode.field "allRosters"
     |> Decode.field "data"
-
