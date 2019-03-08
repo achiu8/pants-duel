@@ -39,9 +39,6 @@ view model game =
 
 resultRow : Bool -> Int -> (Int, User) -> Table.Row Msg
 resultRow found i (rank, user) =
-  let scores = categoryScores user.products
-      total = List.foldr (+) 0 scores
-  in
   Table.tr
     (
       if found && i == 0
@@ -55,13 +52,13 @@ resultRow found i (rank, user) =
       , Table.td [] [ text user.email ]
       ]
       ++
-      List.map scoreCell scores
+      List.map scoreCell (categoryScores user.products)
       ++
-      [ Table.td [ cellCenter ] [ intHtml total ] ]
+      [ Table.td [ cellCenter ] [ intHtml (totalScore user) ] ]
     )
 
 sortWithRank : List User -> List (Int, User)
-sortWithRank = List.indexedMap Tuple.pair << List.reverse << List.sortBy .score
+sortWithRank = List.indexedMap Tuple.pair << List.reverse << List.sortBy totalScore
 
 center : Attribute Msg
 center = style "text-align" "center"
@@ -77,6 +74,9 @@ categoryScore products category =
   products
     |> List.filter (\p -> p.category == category)
     |> List.foldr (\p acc -> acc + p.score) 0
+
+totalScore : User -> Int
+totalScore = List.foldr (+) 0 << categoryScores << .products
 
 scoreCell : Int -> Table.Cell Msg
 scoreCell score = Table.td [ cellCenter ] [ intHtml score ]
