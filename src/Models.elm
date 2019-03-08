@@ -19,7 +19,8 @@ type Game
   | Previous
 
 type alias Product =
-  { name : String
+  { id : String
+  , name : String
   , category : Category
   , price : Int
   }

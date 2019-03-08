@@ -11,8 +11,9 @@ endpoint = "https://f5zps1a0u7.execute-api.us-east-1.amazonaws.com/dev/graphql"
 
 fetchRoster : String -> Cmd Msg
 fetchRoster email =
-  Http.get
-    { url = "http://localhost:9000/roster?user=" ++ email
+  Http.post
+    { url = endpoint
+    , body = Http.jsonBody (rosterQuery email)
     , expect = Http.expectJson ReceivedRoster rosterResponseDecoder
     }
 

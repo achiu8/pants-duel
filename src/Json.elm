@@ -10,6 +10,7 @@ import Utils exposing (..)
 productDecoder : Decoder Product
 productDecoder =
   Decode.succeed Product
+   |> required "id" Decode.string
    |> required "productName" Decode.string
    |> required "productCategory" (Decode.map categoryFromString Decode.string)
    |> required "productPrice" Decode.int
@@ -23,7 +24,8 @@ productsDecoder =
 productEncoder : Product -> Encode.Value
 productEncoder product =
   object
-    [ ("productName", Encode.string product.name)
+    [ ("id", Encode.string product.id)
+    , ("productName", Encode.string product.name)
     , ("productCategory", Encode.string (categoryDisplay product.category))
     , ("productPrice", Encode.int product.price)
     ]
