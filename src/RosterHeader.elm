@@ -13,5 +13,5 @@ view model =
   div []
     [ Header.view [ text ("Budget Left: " ++ currency (budgetLeft model.roster)) ]
     , div [ style "text-align" "center" ]
-      [ text ("Roster spots filled: " ++ String.fromInt (List.length model.roster)) ]
+      [ text ("Roster Spots Filled: " ++ String.fromInt (List.length model.roster)) ]
     ]
