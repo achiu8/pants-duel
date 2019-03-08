@@ -10,7 +10,7 @@ type Category
   = Bottoms
   | Tops
   | Outerwear
-  | Suits
+  | Suiting
   | Accessories
   | Other
 
@@ -46,7 +46,7 @@ categories =
   [ Bottoms
   , Tops
   , Outerwear
-  , Suits
+  , Suiting
   , Accessories
   ]
 

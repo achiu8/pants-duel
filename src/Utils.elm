@@ -18,7 +18,7 @@ categoryDisplay category =
     Bottoms     -> "Bottoms"
     Tops        -> "Tops"
     Outerwear   -> "Outerwear"
-    Suits       -> "Suits"
+    Suiting     -> "Suiting"
     Accessories -> "Accessories"
     Other       -> "Other"
 
@@ -28,7 +28,7 @@ categoryFromString s =
     "bottoms"     -> Bottoms
     "tops"        -> Tops
     "outerwear"   -> Outerwear
-    "suits"       -> Suits
+    "suiting"     -> Suiting
     "accessories" -> Accessories
     _             -> Other
 
@@ -38,7 +38,7 @@ categoryImage category =
     Bottoms     -> "https://png.pngtree.com/svg/20170804/7007aea49e.svg"
     Tops        -> "https://png.pngtree.com/svg/20160621/db3c3c4d9c.svg"
     Outerwear   -> "https://png.pngtree.com/svg/20160606/2597271a8b.svg"
-    Suits       -> "https://png.pngtree.com/svg/20170509/703d28498b.svg"
+    Suiting     -> "https://png.pngtree.com/svg/20170509/703d28498b.svg"
     Accessories -> "https://png.pngtree.com/svg/20170907/f869eff09c.svg"
     Other       -> "https://png.pngtree.com/svg/20161213/a3817a439c.svg"
 
