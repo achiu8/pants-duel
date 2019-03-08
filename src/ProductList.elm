@@ -1,5 +1,6 @@
 module ProductList exposing (..)
 
+import Bootstrap.Alert as Alert
 import Bootstrap.Grid as Grid
 import Bootstrap.Grid.Col as Col
 import Bootstrap.Text as Text
@@ -24,14 +25,14 @@ view model products all =
 
 submittedMessage : Html Msg
 submittedMessage =
-  div [ style "margin" "10px 0" ]
-    [ text "Your roster has been submitted for today. Check out "
+  Alert.simpleSecondary [ style "margin" "10px 0" ]
+    [ text "Your roster has been submitted for today. View the "
     , span
       [ onClick (View Results)
       , style "text-decoration" "underline"
       , style "cursor" "pointer"
       ]
-      [ text "current game results" ]
+      [ text "current game" ]
     , text "."
     ]
 
