@@ -57,3 +57,4 @@ contents model =
            BuildRoster -> BuildRoster.view model
            ViewRoster -> ViewRoster.view model
            Results -> Results.view model Current
+           Previous -> Results.view model Last

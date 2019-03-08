@@ -12,7 +12,7 @@ import Utils exposing (..)
 view : Model -> Game -> Html Msg
 view model game =
   let title = if game == Current then "Current" else "Previous"
-      results = if game == Current then model.results else model.results
+      results = if game == Current then model.results else model.previous
       sorted = sortWithRank results
       current = List.filter (\(_, user) -> user.email == model.email) sorted
       found = not (List.isEmpty current)

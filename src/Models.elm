@@ -5,6 +5,7 @@ type Page
   | BuildRoster
   | ViewRoster
   | Results
+  | Previous
 
 type Category
   = Bottoms
@@ -16,7 +17,7 @@ type Category
 
 type Game
   = Current
-  | Previous
+  | Last
 
 type alias Product =
   { id : String
@@ -35,6 +36,7 @@ type alias Model =
   , roster : List Product
   , products : List Product
   , results : List User
+  , previous : List User
   }
 
 type alias User =
@@ -62,4 +64,5 @@ initialModel =
   , roster = []
   , products = []
   , results = []
+  , previous = []
   }
