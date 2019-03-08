@@ -7,6 +7,16 @@ import Json.Encode as Encode exposing (..)
 import Models exposing (..)
 import Utils exposing (..)
 
+productScoreDecoder : Decoder Int
+productScoreDecoder =
+  Decode.int |>
+    Decode.field "productScore"
+
+productScoresDecoder : Decoder Int
+productScoresDecoder =
+  Decode.list productScoreDecoder
+    |> Decode.map (Maybe.withDefault 0 << List.head)
+
 productDecoder : Decoder Product
 productDecoder =
   Decode.succeed Product
@@ -14,6 +24,7 @@ productDecoder =
    |> required "productName" Decode.string
    |> required "productCategory" (Decode.map categoryFromString Decode.string)
    |> required "productPrice" Decode.int
+   |> required "productScores" productScoresDecoder
 
 productsDecoder : Decoder (List Product)
 productsDecoder =
@@ -55,11 +66,12 @@ userDecoder =
   Decode.succeed User
     |> required "userName" Decode.string
     |> optional "finalScore" Decode.int 0
+    |> required "products" (Decode.list productDecoder)
 
 resultsDecoder : Decoder (List User)
 resultsDecoder =
   Decode.list userDecoder
-    |> Decode.field "allRosters"
+    |> Decode.field "currentRosters"
     |> Decode.field "data"
 
 createRosterDecoder : Decoder User

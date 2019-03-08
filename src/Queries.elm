@@ -49,6 +49,9 @@ productsQuery = query """
       productName
       productPrice
       productCategory
+      productScores {
+        productScore
+      }
     }
   }
 """
@@ -56,9 +59,18 @@ productsQuery = query """
 resultsQuery : Value
 resultsQuery = query """
   {
-    allRosters {
+    currentRosters {
       userName
       finalScore
+      products {
+        id
+        productName
+        productPrice
+        productCategory
+        productScores {
+          productScore
+        }
+      }
     }
   }
 """

@@ -23,6 +23,7 @@ type alias Product =
   , name : String
   , category : Category
   , price : Int
+  , score : Int
   }
 
 type alias Model =
@@ -39,6 +40,7 @@ type alias Model =
 type alias User =
   { email : String
   , score : Int
+  , products : List Product
   }
 
 categories : List Category
